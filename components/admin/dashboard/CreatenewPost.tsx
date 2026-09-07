@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { LivePreviewloading } from "@/components/ui/Skeletonloading";
 import avatar1 from "@/public/Images/avatar1.png";
 import { FacebookPostPreview } from "./FacebookPostPreview";
+import { useAuthRole } from "@/hooks/useAuthRole";
 
 const platformList = [
   { id: "Talk Tamila", name: "Talk Tamila" },
@@ -25,6 +26,7 @@ export function CreatenewPost() {
     "Instagram",
     "Facebook",
   ]);
+    const { isInfluencer, isFreelancer } = useAuthRole();
 
   const router = useRouter();
 
@@ -36,7 +38,7 @@ export function CreatenewPost() {
   if (!context) {
     throw new Error("CreatenewPost must be used within a UseContentProvider");
   }
-  const { setHandlestate } = context;
+  const { setHandlestate  } = context;
 
   const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("Write your thoughts here... Use #hashtags to trend!");
@@ -210,7 +212,13 @@ export function CreatenewPost() {
                   type="button"
                   onClick={() => {
                     setHandlestate(false);
-                    router.push("/admin/content");
+                    if(isFreelancer){
+                      router.push("/freelancer/content")
+                    }else if(isInfluencer){
+                      router.push("/influencer/content")
+                    }else{
+                      router.push("/admin/content")
+                    }
                   }}
                   className={`${buttonVariants({ variant: 'outline' })} px-4 py-1.5 min-[3840px]:px-5 min-[3840px]:py-2 text-[11px] min-[3840px]:text-xs font-bold min-w-[90px] shadow-xs cursor-pointer`}
                 >
