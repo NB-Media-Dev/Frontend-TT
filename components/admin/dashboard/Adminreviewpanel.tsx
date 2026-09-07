@@ -6,6 +6,10 @@ import { buttonVariants } from "@/components/ui/Button";
 import { FacebookIcon } from "@/public/Svgicons/svgicons";
 import Image from "next/image";
 import avatar1 from "@/public/Images/avatar1.png";
+import ai from "@/public/Images/ai.png";
+import movie from "@/public/Images/movie.jpg";
+import news from "@/public/Images/news.png";
+import waterfall from "@/public/Images/waterfall.jpg";
 
 type FilterType = "all" | "pending" | "approved" | "rejected";
 
@@ -23,7 +27,7 @@ const initialReviews = [
     hashtags: ["#Podcast", "#CreatorEconomy"],
     mediaTitle: "Studio color grading — behind the scenes reel",
     mediaSubtitle: "Sofia Nakamura @sofia.nk - submitted 12m ago",
-    mediaImage: avatar1,
+    mediaImage: news,
     checks: ["Copyright OK", "Safe content", "Music match: licensed"],
     status: "pending"
   },
@@ -40,7 +44,7 @@ const initialReviews = [
     hashtags: ["#Cinema", "#TamilCinema"],
     mediaTitle: "Weekly film news highlights",
     mediaSubtitle: "Vicky @vicky.cinema - submitted 30m ago",
-    mediaImage: avatar1,
+    mediaImage: movie,
     checks: ["Copyright OK", "Safe content", "Music match: licensed"],
     status: "pending"
   },
@@ -48,7 +52,7 @@ const initialReviews = [
     id: 3,
     creatorName: "TechTamil",
     creatorUsername: "@techtamil",
-    avatar: avatar1,
+    avatar: ai,
     location: "Chennai, India",
     timeAgo: "12h",
     platform: "YouTube",
@@ -74,7 +78,7 @@ const initialReviews = [
     hashtags: ["#Travel", "#Kodaikanal"],
     mediaTitle: "Hidden falls cinematic sequence",
     mediaSubtitle: "Rajesh @raj.travels - approved 1d ago",
-    mediaImage: avatar1,
+    mediaImage: waterfall,
     checks: ["Copyright OK", "Safe content", "Music match: licensed"],
     status: "approved"
   }

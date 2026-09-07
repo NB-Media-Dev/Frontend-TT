@@ -5,7 +5,7 @@ import avatar4 from "@/public/Images/avatar4.png";
 import avatar5 from "@/public/Images/avatar5.png";
 import { useState } from "react";
 import { UsetimeoutLoader } from "@/hooks/Usetimeoutloader";
-import { Avatarloading, ContentSkeleton } from "@/components/ui/Skeletonloading";
+import { Avatarloading} from "@/components/ui/Skeletonloading";
 
 export default function ActiveCollaboration() {
   const collaborators = [

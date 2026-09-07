@@ -4,40 +4,82 @@ import { useState } from "react";
 import { Clock, Trash2, MoreHorizontal, Film, ArrowRight, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import { InstagramIcon, YoutubeIcon } from "@/public/Svgicons/svgicons";
 import { UsetimeoutLoader } from "@/hooks/Usetimeoutloader";
-import { MetricsSkeleton, ScheduleSlotSkeleton } from "@/components/ui/Skeletonloading";
+import { MetricsSkeleton } from "@/components/ui/Skeletonloading";
 import Image, { StaticImageData } from "next/image";
-import avatar1 from "@/public/Images/avatar1.png";
+import metro from "@/public/Images/metro.jpg";
+import news from "@/public/Images/news.png";
+import ai from "@/public/Images/ai.png";
+import food from "@/public/Images/food.jpg";
+import nextjs from "@/public/Images/nextjs.jpg";
+import sport from "@/public/Images/sport.png";
+import tech from "@/public/Images/tech.png";
 
-interface QueueItem {
-  id: string;
-  time: string;
-  status: "Scheduled" | "Needs Review";
-  platform: "youtube" | "instagram";
-  title: string;
-  type: string;
-  thumbnail: string | StaticImageData;
-}
+// interface QueueItem {
+//   id: string;
+//   time: string;
+//   status: "Scheduled" | "Needs Review";
+//   platform: "youtube" | "instagram";
+//   title: string;
+//   type: string;
+//   thumbnail: string | StaticImageData;
+// }
 
-const RAW_QUEUE_ITEMS: [string, string, QueueItem["status"], QueueItem["platform"], string, string][] = [
-  ["1", "Today, 09:30 AM", "Scheduled", "youtube", "Chennai Metro Phase II Details", "AI Shorts • 45s"],
-  ["2", "Today, 01:00 PM", "Needs Review", "instagram", "Tamil Trending Tech News", "Reel • 30s"],
-  ["3", "Today, 04:30 PM", "Scheduled", "youtube", "Is AI replacing developers?", "AI Shorts • 60s"],
-  ["4", "Tomorrow, 09:00 AM", "Scheduled", "instagram", "Top 5 Chennai Food Spots", "Reel • 45s"],
-  ["5", "Tomorrow, 02:00 PM", "Needs Review", "youtube", "NextJS 16 Breaking Features", "AI Shorts • 55s"],
-  ["6", "Aug 21, 10:00 AM", "Scheduled", "youtube", "Tamil Nadu Spaceport Launch", "Video • 90s"],
-  ["7", "Aug 22, 11:30 AM", "Scheduled", "instagram", "Weekly Tech Wrap Up", "Reel • 30s"],
-];
+// const RAW_QUEUE_ITEMS: [string, string, QueueItem["status"], QueueItem["platform"], string, string][] = [
+//   ["1", "Today, 09:30 AM", "Scheduled", "youtube", "Chennai Metro Phase II Details", "AI Shorts • 45s",metro],
+//   ["2", "Today, 01:00 PM", "Needs Review", "instagram", "Tamil Trending Tech News", "Reel • 30s"],
+//   ["3", "Today, 04:30 PM", "Scheduled", "youtube", "Is AI replacing developers?", "AI Shorts • 60s"],
+//   ["4", "Tomorrow, 09:00 AM", "Scheduled", "instagram", "Top 5 Chennai Food Spots", "Reel • 45s"],
+//   ["5", "Tomorrow, 02:00 PM", "Needs Review", "youtube", "NextJS 16 Breaking Features", "AI Shorts • 55s"],
+//   ["6", "Aug 21, 10:00 AM", "Scheduled", "youtube", "Tamil Nadu Spaceport Launch", "Video • 90s"],
+//   ["7", "Aug 22, 11:30 AM", "Scheduled", "instagram", "Weekly Tech Wrap Up", "Reel • 30s"],
+// ];
 
-const initialQueueItems: QueueItem[] = RAW_QUEUE_ITEMS.map(
-  ([id, time, status, platform, title, type]) => ({
-    id,
-    time,
-    status,
-    platform,
-    title,
-    type,
-    thumbnail: avatar1,
-  })
+// const initialQueueItems: QueueItem[] = RAW_QUEUE_ITEMS.map(
+//   ([id, time, status, platform, title, type,thumbnail]) => ({
+//     id,
+//     time,
+//     status,
+//     platform,
+//     title,
+//     type,
+//     thumbnail
+//   })
+// );
+
+
+interface QueueItem { 
+  id: string; 
+  time: string; 
+  status: "Scheduled" | "Needs Review"; 
+  platform: "youtube" | "instagram"; 
+  title: string; 
+  type: string; 
+  thumbnail: string | StaticImageData; 
+} 
+
+
+const RAW_QUEUE_ITEMS: [string, string, QueueItem["status"], QueueItem["platform"], string, string, (string | StaticImageData)?][] = [ 
+
+  ["1", "Today, 09:30 AM", "Scheduled", "youtube", "Chennai Metro Phase II Details", "AI Shorts • 45s",metro ], 
+  ["2", "Today, 01:00 PM", "Needs Review", "instagram", "Tamil Trending Tech News", "Reel • 30s", news], 
+  ["3", "Today, 04:30 PM", "Scheduled", "youtube", "Is AI replacing developers?", "AI Shorts • 60s", ai], 
+  ["4", "Tomorrow, 09:00 AM", "Scheduled", "instagram", "Top 5 Chennai Food Spots", "Reel • 45s", food], 
+  ["5", "Tomorrow, 02:00 PM", "Needs Review", "youtube", "NextJS 16 Breaking Features", "AI Shorts • 55s", nextjs], 
+  ["6", "Aug 21, 10:00 AM", "Scheduled", "youtube", "Tamil Nadu Spaceport Launch", "Video • 90s", sport], 
+  ["7", "Aug 22, 11:30 AM", "Scheduled", "instagram", "Weekly Tech Wrap Up", "Reel • 30s", tech], 
+]; 
+
+
+const initialQueueItems: QueueItem[] = RAW_QUEUE_ITEMS.map( 
+  ([id, time, status, platform, title, type, thumbnail]) => ({ 
+    id, 
+    time, 
+    status, 
+    platform, 
+    title, 
+    type, 
+    thumbnail: thumbnail ?? tech 
+  }) 
 );
 
 function ReviewEditIcon() {

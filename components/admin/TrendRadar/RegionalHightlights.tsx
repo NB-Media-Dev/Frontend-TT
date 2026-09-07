@@ -4,8 +4,12 @@ import  { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { UsetimeoutLoader } from "@/hooks/Usetimeoutloader";
 import { MetricsSkeleton } from "@/components/ui/Skeletonloading";
-import avatar1 from "@/public/Images/avatar1.png"
+import maduari from "@/public/Images/maduari.webp"
 import Image, { StaticImageData } from "next/image";
+import coimbatore from "@/public/Images/coimbatore.jpg";
+import kanchipuram from "@/public/Images/kanchipuram.webp";
+import thiru from "@/public/Images/thiru.jpg";
+
 interface HighlightItem {
   id: number;
   location: string;
@@ -21,28 +25,28 @@ export default function RegionalHightlights() {
     {
       id: 1,
       location: "Madurai",
-      image: avatar1,
+      image: maduari,
       title: "Food Festival Trends",
       description: "Cultural culinary tourism is spiking on social feeds.",
     },
     {
       id: 2,
       location: "Coimbatore",
-      image: avatar1,
+      image: coimbatore,
       title: "EV Startup Growth",
       description: "Local startups lead in sustainable mobility discussions.",
     },
     {
       id: 3,
       location: "Kanchipuram",
-      image: avatar1,
+      image: kanchipuram,
       title: "Handloom 2.0",
       description: "D2C textile brands gaining massive traction online.",
     },
     {
       id: 4,
       location: "Tiruchendur",
-      image: avatar1,
+      image: thiru,
       title: "Spiritual Tourism",
       description: "Pilgrimage travel vlogs seeing 3x engagement surge.",
     },
