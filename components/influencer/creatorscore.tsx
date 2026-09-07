@@ -46,7 +46,7 @@ export default function CreatorScore({
     <div className="w-full bg-white rounded-[20px] sm:rounded-[28px] p-4 sm:p-5 md:p-6 border border-gray-100 shadow-[0_2px_16px_rgba(0,0,0,0.03)] select-none">
      
       <div className="flex items-center justify-between mb-4 sm:mb-5">
-        <h3 className="text-base sm:text-xl font-bold text-gray-900 tracking-tight">
+        <h3 className="text-base sm:text-xl  text-gray-900 tracking-tight">
           Creator Score
         </h3>
         

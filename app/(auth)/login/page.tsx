@@ -126,8 +126,14 @@ export default function LoginPage() {
             Sign Up
           </Link>
         </p>
-
+         <div className='flex flex-col items-center justify-center gap-1 mt-6 pt-6 border-t border-gray-100 text-center text-gray-400'>
+          <p className='text-xs font-semibold uppercase tracking-wider text-gray-500 mb-1'>Domain Hint</p>
+          <p className='text-xs font-mono bg-gray-50 px-2 py-0.5 rounded'>Admin@talktamila.com || admin123</p>
+          <p className='text-xs font-mono bg-gray-50 px-2 py-0.5 rounded'>inf@talktamila.com || inf123</p>
+          <p className='text-xs font-mono bg-gray-50 px-2 py-0.5 rounded'>free@talktamila.com || free123</p>
+        </div>
       </div>
     </div>
   )
 }
+//kela hint la email and password show aagaum for 3 user

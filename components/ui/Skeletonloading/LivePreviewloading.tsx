@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 export function LivePreviewloading({ className }: { className?: string }) {
   return (
     <div className={cn("w-full flex justify-center", className)}>
-      <div className="bg-[#F0F2F5] min-h-[420px] sm:min-h-[480px] h-full rounded-2xl p-2 sm:p-3 border border-gray-200/40 flex flex-col gap-2 w-full max-w-[320px] sm:max-w-[360px] md:max-w-md lg:max-w-[290px]  min-[2560px]:max-w-[360px] min-[3840px]:max-w-[420px] mx-auto overflow-hidden shadow-xs">
+      <div className="bg-[#F0F2F5] min-h-[420px] sm:min-h-[250px] h-full rounded-2xl p-2 sm:p-3 border border-gray-200/40 flex flex-col gap-2 w-full max-w-[320px] sm:max-w-[360px] md:max-w-md lg:max-w-[290px]  min-[2560px]:max-w-[360px] min-[3840px]:max-w-[420px] mx-auto overflow-hidden shadow-xs">
       
         <div className="flex items-center gap-2 px-1 py-0.5">
           <Skeleton className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-orange-200/80" />

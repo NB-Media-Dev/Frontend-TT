@@ -70,7 +70,7 @@ export default function UpcomingPost({ isLoading: propIsLoading }: UpcomingPostP
     <div className="w-full bg-white rounded-[20px] sm:rounded-[28px] p-4 sm:p-5 md:p-6 border border-gray-100 shadow-[0_2px_16px_rgba(0,0,0,0.03)] select-none">
      
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-base sm:text-xl font-bold text-gray-900 tracking-tight">
+        <h3 className="text-base sm:text-xl  text-gray-900 tracking-tight">
           Upcoming Posts
         </h3>
         <button className={`${buttonVariants({variant:'link'})} text-sm`}>
@@ -104,7 +104,7 @@ export default function UpcomingPost({ isLoading: propIsLoading }: UpcomingPostP
                   <span className="shrink-0">
                     {post.platform === "Instagram" ? <InstagramIcon /> : <YoutubeIcon />}
                   </span>
-                  <h4 className="text-xs sm:text-sm font-bold text-gray-900 truncate group-hover:text-[#FF6B35] transition-colors">
+                  <h4 className="text-xs sm:text-sm  text-gray-900 truncate group-hover:text-[#FF6B35] transition-colors">
                     {post.title}
                   </h4>
                 </div>
@@ -116,7 +116,7 @@ export default function UpcomingPost({ isLoading: propIsLoading }: UpcomingPostP
 
             
             <div className="shrink-0">
-              <span className="inline-block px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-[#E0F2FE] text-[#0284C7]">
+              <span className="inline-block px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs  bg-[#E0F2FE] text-[#0284C7]">
                 {post.status}
               </span>
             </div>

@@ -99,10 +99,10 @@ export default function Creator({ limit = 2, isLoading: propIsLoading }: Creator
 
               
               <div className="min-w-0 flex-1">
-                <h4 className="text-xs sm:text-base font-bold text-gray-900 truncate tracking-tight">
+                <h4 className="text-xs sm:text-base text-gray-900 truncate tracking-tight">
                   {creator.name}
                 </h4>
-                <p className="text-[11px] sm:text-xs font-semibold text-gray-400 truncate mt-0.5">
+                <p className="text-[11px] sm:text-xs  text-gray-600 truncate mt-0.5">
                   {creator.handle}
                 </p>
               </div>
@@ -112,10 +112,10 @@ export default function Creator({ limit = 2, isLoading: propIsLoading }: Creator
             <div className="flex items-center gap-3 sm:gap-6 shrink-0">
              
               <div className="text-right shrink-0">
-                <span className="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
+                <span className="block text-[10px] text-gray-800 uppercase tracking-wider">
                   Score
                 </span>
-                <span className="text-sm sm:text-lg font-extrabold text-gray-900">
+                <span className="text-sm sm:text-lg  text-gray-900">
                   {creator.score}
                 </span>
               </div>
@@ -123,7 +123,7 @@ export default function Creator({ limit = 2, isLoading: propIsLoading }: Creator
              
               <button
                 onClick={() => toggleFollow(creator.id)}
-                className={`px-3.5 sm:px-5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer active:scale-95 shrink-0 ${
+                className={`px-3.5 sm:px-5 py-1.5 rounded-full text-xs  transition-all cursor-pointer active:scale-95 shrink-0 ${
                   creator.isFollowing
                     ? "bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200"
                     : "border-2 border-[#FF6B35] text-[#FF6B35] hover:bg-[#FF6B35] hover:text-white"

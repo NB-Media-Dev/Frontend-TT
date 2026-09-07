@@ -73,7 +73,7 @@ function TypeBadge({ type }: { type: ContentItem["type"] }) {
   };
 
   return (
-    <span className={`px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold ${styles[type]}`}>
+    <span className={`px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs  ${styles[type]}`}>
       {type}
     </span>
   );
@@ -81,7 +81,7 @@ function TypeBadge({ type }: { type: ContentItem["type"] }) {
 
 function StatusBadge({ status }: { status: ContentItem["status"] }) {
   return (
-    <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold bg-[#E8F8F0] text-[#10B981]">
+    <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs  bg-[#E8F8F0] text-[#10B981]">
       {status}
     </span>
   );
@@ -105,7 +105,7 @@ function MobileContentCard({ item }: { item: ContentItem }) {
 
         <div className="min-w-0 flex-1 flex flex-col justify-between">
           <div className="flex items-start justify-between gap-1">
-            <h4 className="text-xs font-bold text-gray-900 line-clamp-1">
+            <h4 className="text-xs  text-gray-900 line-clamp-1">
               {item.title}
             </h4>
             <button className="text-gray-400 p-0.5 shrink-0">
@@ -129,10 +129,10 @@ function MobileContentCard({ item }: { item: ContentItem }) {
 
       <div className="flex items-center justify-between pt-2 border-t border-gray-200/60 text-[11px] text-gray-500">
         <div>
-          <span className="text-gray-400">Views:</span> <span className="font-bold text-gray-800">{item.views}</span>
+          <span className="text-gray-400">Views:</span> <span className=" text-gray-800">{item.views}</span>
         </div>
         <div>
-          <span className="text-gray-400">Eng:</span> <span className="font-bold text-gray-800">{item.engagement}</span>
+          <span className="text-gray-400">Eng:</span> <span className=" text-gray-800">{item.engagement}</span>
         </div>
         <div>
           <span className="font-medium text-gray-400">{item.date}</span>
@@ -160,7 +160,7 @@ function DesktopTableRow({ item }: { item: ContentItem }) {
             </span>
           </div>
           <div className="min-w-0 flex-1">
-            <h4 className="text-xs sm:text-sm font-bold text-gray-900 truncate group-hover:text-[#FF6B35] transition-colors">
+            <h4 className="text-xs sm:text-sm  text-gray-900 truncate group-hover:text-[#FF6B35] transition-colors">
               {item.title}
             </h4>
             <p className="text-[10px] sm:text-[11px] font-medium text-gray-400 truncate mt-0.5">
@@ -180,11 +180,11 @@ function DesktopTableRow({ item }: { item: ContentItem }) {
         </div>
       </td>
 
-      <td className="py-2.5 sm:py-3 text-center text-xs sm:text-sm text-gray-900 font-semibold">
+      <td className="py-2.5 sm:py-3 text-center text-xs sm:text-sm text-gray-900 ">
         {item.views}
       </td>
 
-      <td className="py-2.5 sm:py-3 text-center text-xs sm:text-sm text-gray-900 font-semibold">
+      <td className="py-2.5 sm:py-3 text-center text-xs sm:text-sm text-gray-900 ">
         {item.engagement}
       </td>
 
@@ -226,7 +226,7 @@ export default function RecentContent({ isLoading: propIsLoading }: RecentConten
   return (
     <div className="w-full bg-white rounded-[20px] sm:rounded-[28px] p-4 sm:p-5 md:p-6 border border-gray-100 shadow-[0_2px_16px_rgba(0,0,0,0.03)] select-none">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg sm:text-2xl font-bold text-gray-900 tracking-tight">
+        <h2 className="text-lg sm:text-2xl text-gray-900 tracking-tight">
           Recent Content
         </h2>
         <button className={` ${buttonVariants({ variant: "link" })} text-xs sm:text-sm `}>
@@ -239,7 +239,7 @@ export default function RecentContent({ isLoading: propIsLoading }: RecentConten
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer whitespace-nowrap ${
+            className={`px-3.5 sm:px-4 py-1.5 rounded-full text-xs  transition-all cursor-pointer whitespace-nowrap ${
               activeTab === tab
                 ? "bg-[#FF6B35] text-white shadow-xs"
                 : "bg-[#F5EFE8] text-gray-600 hover:bg-gray-200/70"
@@ -267,7 +267,7 @@ export default function RecentContent({ isLoading: propIsLoading }: RecentConten
       <div className="hidden sm:block w-full overflow-x-auto scrollbar-thin scrollbar-thumb-gray-200">
         <table className="w-full min-w-[620px] text-left border-collapse">
           <thead>
-            <tr className="text-[10px] sm:text-[11px] text-gray-400 font-bold uppercase tracking-wider border-b border-gray-100">
+            <tr className="text-[10px] sm:text-[11px] text-gray-400  uppercase tracking-wider border-b border-gray-100">
               <th className="pb-3 pl-2 pr-2 whitespace-nowrap">Content</th>
               <th className="pb-3 px-2 text-center whitespace-nowrap">Type</th>
               <th className="pb-3 px-2 text-center whitespace-nowrap">Platform</th>
