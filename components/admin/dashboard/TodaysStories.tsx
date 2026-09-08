@@ -7,7 +7,7 @@ import avatar2 from "@/public/Images/profile2.jpg";
 import avatar3 from "@/public/Images/profile3.jpg";
 import avatar4 from "@/public/Images/profile4.jpg";
 import { useState } from "react";
-import Addstories from "./Addstories";
+
 
 interface Story {
   id: number;
@@ -254,13 +254,7 @@ export default function TodayStories() {
         </div>
       </div>
 
-      {/* Add Story Modal */}
-      {isAddStoryOpen && (
-        <Addstories
-          isOpen={isAddStoryOpen}
-          onClose={() => setIsAddStoryOpen(false)}
-        />
-      )}
+    
     </>
   );
 }
