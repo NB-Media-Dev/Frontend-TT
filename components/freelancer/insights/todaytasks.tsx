@@ -5,6 +5,7 @@ import { Square, CheckSquare } from "lucide-react";
 import { buttonVariants } from "@/components/ui/Button";
 import { UsetimeoutLoader } from "@/hooks/Usetimeoutloader";
 import { Avatarloading } from "@/components/ui/Skeletonloading";
+import { Cardlayout } from "@/components/ui/Cardlayout";
 
 export interface TaskItem {
   id: string;
@@ -52,60 +53,60 @@ export default function Todaytask({
   };
 
   return (
-    <div
-      className={`w-full max-w-full bg-white rounded-3xl p-4 sm:p-5 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col gap-4 ${className}`}
-    >
-      <div className="flex items-center justify-between">
-        <h3 className="font-bold text-gray-900 text-base tracking-tight">
-          {title}
-        </h3>
+    <Cardlayout
+      title={title} 
+      icon={null}  
+      isLoading={isLoading}
+      skeleton={<Avatarloading />}
+
+      className={`rounded-3xl border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] select-none flex flex-col gap-4 ${className}`}
+
+      action={
         <button
           type="button"
           onClick={onViewAll}
-          className={`${buttonVariants({ variant: "link" })} text-xs `}
+          className={`${buttonVariants({ variant: "link" })} text-xs font-bold`}
         >
           View All
         </button>
-      </div>
+      }
+    >
 
-      {isLoading ? (
-        <Avatarloading />
-      ) : (
-        <div className="flex flex-col gap-3">
-          {tasks.map((task) => (
-            <button
-              type="button"
-              key={task.id}
-              onClick={() => toggleTask(task.id)}
-              className="flex items-center justify-between gap-3 p-1 rounded-2xl hover:bg-gray-50/80 transition-colors cursor-pointer group w-full text-left bg-transparent border-0"
-            >
-              <div className="flex items-center gap-3 min-w-0 flex-1">
-                <span className="text-gray-400 group-hover:text-[#C04808] transition-colors shrink-0">
-                  {task.completed ? (
-                    <CheckSquare className="w-4 h-4 text-[#C04808]" />
-                  ) : (
-                    <Square className="w-4 h-4 text-gray-300" />
-                  )}
-                </span>
+      <div className="flex flex-col gap-3">
+        {tasks.map((task) => (
+          <button
+            type="button"
+            key={task.id}
+            onClick={() => toggleTask(task.id)}
+            className="flex items-center justify-between gap-3 p-1 rounded-2xl hover:bg-gray-50/80 transition-colors cursor-pointer group w-full text-left bg-transparent border-0 select-none outline-none focus-visible:bg-gray-50/80"
+          >
+            <div className="flex items-center gap-3 min-w-0 flex-1">
 
-                <span
-                  className={`text-xs sm:text-sm font-semibold truncate transition-all ${
-                    task.completed
-                      ? "line-through text-gray-400"
-                      : "text-gray-700 group-hover:text-gray-900"
-                  }`}
-                >
-                  {task.title}
-                </span>
-              </div>
-
-              <span className="text-xs font-semibold text-gray-400 shrink-0">
-                {task.progress}
+              <span className="text-gray-400 group-hover:text-[#C04808] transition-colors shrink-0">
+                {task.completed ? (
+                  <CheckSquare className="w-4 h-4 text-[#C04808]" />
+                ) : (
+                  <Square className="w-4 h-4 text-gray-300" />
+                )}
               </span>
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
+
+              <span
+                className={`text-xs sm:text-sm font-semibold truncate transition-all select-text ${
+                  task.completed
+                    ? "line-through text-gray-400"
+                    : "text-gray-700 group-hover:text-gray-900"
+                }`}
+              >
+                {task.title}
+              </span>
+            </div>
+
+            <span className="text-xs font-semibold text-gray-400 shrink-0 select-none">
+              {task.progress}
+            </span>
+          </button>
+        ))}
+      </div>
+    </Cardlayout>
   );
 }

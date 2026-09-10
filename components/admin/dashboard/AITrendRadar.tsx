@@ -6,6 +6,7 @@ import { useAuthRole } from "@/hooks/useAuthRole";
 import { useState } from "react";
 import { UsetimeoutLoader } from "@/hooks/Usetimeoutloader";
 import { ContentSkeleton } from "@/components/ui/Skeletonloading";
+import { Cardlayout } from "@/components/ui/Cardlayout";
 
 interface AdminTrendItem {
   id: number;
@@ -49,35 +50,40 @@ export default function AITrendRadar({ compact = false }: AITrendRadarProps) {
   const targetHref = isInfluencer ? "/influencer/trendradar" : "/admin/trendradar";
 
   return (
-    <div className={`w-full bg-white rounded-[24px] sm:rounded-[32px] ${compact ? "p-3 sm:p-5" : "p-4 sm:p-5"} shadow-[0_4px_24px_rgba(0,0,0,0.03)] border border-[#FFEFE0]`}>
-      <div className={`flex items-center justify-between ${compact ? "mb-2" : "mb-4"}`}>
-        <div className="flex items-center gap-1.5 min-w-0">
-          {!compact && (
-            <div className="p-1.5 rounded-lg bg-[#FFF2F0] text-[#FF4B2B] shrink-0">
-              <Radar className="w-5 h-5" />
-            </div>
-          )}
-          {compact && (
-            <span className="p-1 rounded-lg bg-orange-100 text-[#FF5A26] inline-flex items-center justify-center shrink-0">
-              <Radar className="w-3.5 h-3.5" />
-            </span>
-          )}
-          <h2 className={`font-bold text-gray-900 tracking-tight truncate ${compact ? "text-[11px] xs:text-[13px] sm:text-lg" : "text-base sm:text-lg"}`}>
-            AI Trend Radar
-          </h2>
-        </div>
-        {!compact && (
+    <Cardlayout
+      title="AI Trend Radar"
+      isLoading={isLoading}
+      compact={compact}
+
+      skeleton={<ContentSkeleton count={3} height="h-[30px]" width="w-full" />}
+      
+
+      icon={
+        compact ? (
+          <span className="p-1 rounded-lg bg-orange-100 text-[#FF5A26] inline-flex items-center justify-center shrink-0">
+            <Radar className="w-3.5 h-3.5" />
+          </span>
+        ) : (
+          <div className="p-1.5 rounded-lg bg-[#FFF2F0] text-[#FF4B2B] shrink-0">
+            <Radar className="w-5 h-5" />
+          </div>
+        )
+      }
+
+      action={
+        !compact ? (
           <Link
             href={targetHref}
             className="text-xs sm:text-sm text-[#FF6B35] hover:text-[#D9652B] transition-colors duration-200 font-medium shrink-0"
           >
             View All
           </Link>
-        )}
-      </div>
+        ) : null
+      }
+    >
 
-      {isInfluencer &&(
-        isLoading ? <ContentSkeleton count={3} height="h-[30px]" width="w-full"/> : <div className="flex flex-col">
+      {isInfluencer && (
+        <div className="flex flex-col">
           {influencerTrends.map((item, index) => (
             <div
               key={item.id}
@@ -105,11 +111,10 @@ export default function AITrendRadar({ compact = false }: AITrendRadarProps) {
             </div>
           ))}
         </div>
-        
-      ) }
-      
+      )}
+
       {isAdmin && (
-        isLoading ?  <ContentSkeleton count={3} height="h-[30px]" width="w-full"/>:<div className={`flex flex-col ${compact ? "gap-2.5" : "gap-4"}`}>
+        <div className={`flex flex-col ${compact ? "gap-2.5" : "gap-4"}`}>
           {adminTrends.map((item) => (
             <div key={item.id} className="flex flex-col group min-w-0">
               <div className="flex items-center justify-between mb-1 sm:mb-1.5">
@@ -133,9 +138,8 @@ export default function AITrendRadar({ compact = false }: AITrendRadarProps) {
               </span>
             </div>
           ))}
-        </div> 
-        
+        </div>
       )}
-    </div>
+    </Cardlayout>
   );
 }

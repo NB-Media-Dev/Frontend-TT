@@ -45,7 +45,7 @@ export default function AICreatorStudio() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="p-2.5 rounded-lg bg-[#FFF2EC] text-[#FF5A26]">
-              <Sparkles className="w-5 h-5 animate-pulse" />
+              <Sparkles className="w-5 h-5 " />
             </div>
             <h2 className="text-base sm:text-lg font-bold text-gray-900 ">
               AI Creator Studio

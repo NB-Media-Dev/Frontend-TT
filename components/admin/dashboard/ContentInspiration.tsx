@@ -1,5 +1,6 @@
 "use client";
 
+import { Cardlayout } from "@/components/ui/Cardlayout";
 import { ContentSkeleton } from "@/components/ui/Skeletonloading";
 import { UsetimeoutLoader } from "@/hooks/Usetimeoutloader";
 import { Lightbulb } from "lucide-react";
@@ -13,11 +14,9 @@ interface InspirationItem {
 }
 
 export default function ContentInspiration() {
+  const [isLoading, setIsLoading] = useState(true);
 
-     const [isLoading, setIsLoading] = useState(true);
-
-  
- UsetimeoutLoader(setIsLoading)
+  UsetimeoutLoader(setIsLoading);
 
   const inspirations: InspirationItem[] = [
     {
@@ -41,29 +40,26 @@ export default function ContentInspiration() {
   ];
 
   return (
-    <div className="w-full bg-white rounded-[32px] p-4 sm:p-5 shadow-[0_4px_24px_rgba(0,0,0,0.03)] border border-[#FFEFE0]">
-
-      <div className="flex items-center gap-2 mb-4.5">
+    <Cardlayout
+      title="Content Inspiration"
+      isLoading={isLoading}
+      skeleton={<ContentSkeleton height="h-[40px]" width="w-full" />}
+      icon={
         <div className="p-1.5 rounded-lg bg-[#FFF7ED] text-[#EA580C]">
           <Lightbulb className="w-5 h-5" />
         </div>
-        <h2 className="text-base sm:text-lg font-bold text-gray-900 tracking-tight">
-          Content Inspiration
-        </h2>
-      </div>
-      {isLoading ? <ContentSkeleton height="h-[40px]" width="w-full" /> :
+      }
+    >
       <div className="flex flex-col gap-3">
         {inspirations.map((item) => (
           <div
             key={item.id}
-            className={`px-5 py-4 ${item.bgClass} ${item.hoverBgClass} text-gray-800 text-sm  rounded-[24px] cursor-pointer transition-all duration-300 hover:shadow-sm hover:-translate-y-0.5`}
+            className={`px-5 py-4 ${item.bgClass} ${item.hoverBgClass} text-gray-800 text-sm rounded-[24px] cursor-pointer transition-all duration-300 hover:shadow-sm hover:-translate-y-0.5`}
           >
             {item.text}
           </div>
         ))}
       </div>
-      }
-      
-    </div>
+    </Cardlayout>
   );
 }

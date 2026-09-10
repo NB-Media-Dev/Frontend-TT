@@ -6,6 +6,7 @@ import { UsetimeoutLoader } from "@/hooks/Usetimeoutloader";
 import Image, { StaticImageData } from "next/image";
 import React, { useState } from "react";
 import avatar1 from "@/public/Images/avatar1.png";
+import { Cardlayout } from "@/components/ui/Cardlayout";
 export interface TrendingItem {
   id: string;
   title: string;
@@ -50,50 +51,53 @@ export default function TrendingRepost({
     const [isLoading, setIsLoading] = useState( true);
   UsetimeoutLoader(setIsLoading);
   return (
-    <div
-      className={`w-full max-w-full bg-white rounded-3xl p-4 sm:p-5 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col gap-4 ${className}`}
-    >
-    
-      <div className="flex items-center justify-between">
-        <h3 className="font-bold text-gray-900 text-base tracking-tight">
-          {title}
-        </h3>
+    <Cardlayout
+      title={title} 
+      icon={null}   
+      isLoading={isLoading}
+      skeleton={<Avatarloading />}
+
+      className={`rounded-3xl border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] select-none flex flex-col gap-4 ${className}`}
+
+      action={
         <button
           type="button"
           onClick={onViewAll}
-       className={`${buttonVariants({variant:'link'})} text-xs `}
+          className={`${buttonVariants({ variant: 'link' })} text-xs font-bold`}
         >
           View All
         </button>
-      </div>
+      }
+    >
 
-      {isLoading ? <Avatarloading /> : <div className="flex flex-col gap-3.5">
+      <div className="flex flex-col gap-3.5">
         {items.map((item) => (
           <div
             key={item.id}
-            className="flex items-center gap-3 p-1 rounded-2xl hover:bg-gray-50/80 transition-colors"
+            className="flex items-center gap-3 p-1 rounded-2xl hover:bg-gray-50/80 transition-colors select-none"
           >
-            
-            <Image
-              src={item.imageUrl}
-              alt={item.title}
-              className="w-10 h-10 rounded-full object-cover shrink-0 border border-gray-100 shadow-xs"
-            />
 
-            
+            <div className="w-10 h-10 rounded-full relative overflow-hidden shrink-0 border border-gray-100 shadow-xs bg-gray-100">
+              <Image
+                src={item.imageUrl}
+                alt={item.title}
+                fill
+                className="object-cover w-full h-full"
+                sizes="40px"
+              />
+            </div>
             <div className="min-w-0 flex-1">
-              <h4 className="font-bold text-xs sm:text-sm text-gray-900 truncate flex items-center gap-1">
+              <h4 className="font-bold text-xs sm:text-sm text-gray-900 truncate flex items-center gap-1 select-text">
                 <span>{item.title}</span>
-                {item.isHot && <span className="text-xs">🔥</span>}
+                {item.isHot && <span className="text-xs select-none">🔥</span>}
               </h4>
-              <p className="text-[11px] text-gray-400 font-medium truncate mt-0.5">
+              <p className="text-[11px] text-gray-400 font-medium truncate mt-0.5 select-text">
                 {item.reward}
               </p>
             </div>
           </div>
         ))}
-      </div> }
-      
-    </div>
+      </div>
+    </Cardlayout>
   );
 }

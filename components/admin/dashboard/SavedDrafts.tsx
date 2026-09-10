@@ -6,6 +6,7 @@ import QuickNotes from "./QuickNotes";
 import { UsetimeoutLoader } from "@/hooks/Usetimeoutloader";
 import { ContentSkeleton } from "@/components/ui/Skeletonloading";
 import Link from "next/link";
+import { Cardlayout } from "@/components/ui/Cardlayout";
 
 interface DraftItem {
   id: number;
@@ -15,11 +16,9 @@ interface DraftItem {
 }
 
 export default function SavedDrafts() {
+  const [isLoading, setIsLoading] = useState(true);
 
-     const [isLoading, setIsLoading] = useState(true);
-
-  
- UsetimeoutLoader(setIsLoading)
+  UsetimeoutLoader(setIsLoading);
   const drafts: DraftItem[] = [
     {
       id: 1,
@@ -42,50 +41,47 @@ export default function SavedDrafts() {
   ];
 
   return (
-    <div className="w-full bg-white rounded-[32px] p-4 sm:p-5 shadow-[0_4px_24px_rgba(0,0,0,0.03)] border border-[#FFEFE0] flex flex-col gap-4">
-   
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-lg bg-[#FFF2EC] text-[#FF5A26]">
-            <FileText className="w-5 h-5" />
-          </div>
-          <h2 className="text-base sm:text-lg font-bold text-gray-900 tracking-tight">
-            Saved Drafts
-          </h2>
+    <Cardlayout
+      title="Saved Drafts"
+      isLoading={isLoading}
+      skeleton={<ContentSkeleton />}
+      icon={
+        <div className="p-1.5 rounded-lg bg-[#FFF2EC] text-[#FF5A26]">
+          <FileText className="w-5 h-5" />
         </div>
+      }
+      action={
         <Link
           href="/admin"
           className="text-xs sm:text-sm font-semibold text-[#FF6B35] hover:text-[#D9652B] transition-colors duration-200"
         >
           Open
         </Link>
-      </div>
-      {isLoading ? <ContentSkeleton/> :
-      
-       <div>
-      <div className="flex flex-col gap-3">
-        {drafts.map((item) => (
-          <div
-            key={item.id}
-            className="w-full bg-[#FFF9F2] hover:bg-[#FDF0E2] transition-all duration-200 rounded-[20px] px-4.5 py-3.5 flex items-center justify-between cursor-pointer group hover:shadow-sm"
-          >
-            <div className="flex flex-col">
-              <span className="text-sm  text-gray-800 group-hover:text-[#FF6B35] transition-colors duration-200">
-                {item.title}
-              </span>
-              <span className="text-xs text-gray-400 mt-0.5 ">
-                {item.type} • {item.time}
-              </span>
+      }
+    >
+      <div>
+        <div className="flex flex-col gap-3">
+          {drafts.map((item) => (
+            <div
+              key={item.id}
+              className="w-full bg-[#FFF9F2] hover:bg-[#FDF0E2] transition-all duration-200 rounded-[20px] px-4.5 py-3.5 flex items-center justify-between cursor-pointer group hover:shadow-sm"
+            >
+              <div className="flex flex-col">
+                <span className="text-sm text-gray-800 group-hover:text-[#FF6B35] transition-colors duration-200">
+                  {item.title}
+                </span>
+                <span className="text-xs text-gray-400 mt-0.5">
+                  {item.type} • {item.time}
+                </span>
+              </div>
+              <ArrowRight className="w-4 h-4 text-[#FF6B35] transition-transform duration-200 group-hover:translate-x-1" />
             </div>
-            <ArrowRight className="w-4 h-4 text-[#FF6B35] transition-transform duration-200 group-hover:translate-x-1" />
-          </div>
-        ))}
+          ))}
+        </div>
+        <div className="mt-4">
+          <QuickNotes />
+        </div>
       </div>
-      <div className="mt-1">
-        <QuickNotes />
-      </div>
-      </div>}
-   
-    </div>
+    </Cardlayout>
   );
 }

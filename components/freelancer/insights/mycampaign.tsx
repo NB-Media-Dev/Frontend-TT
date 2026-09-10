@@ -5,6 +5,7 @@ import { Megaphone, Newspaper } from "lucide-react";
 import { buttonVariants } from "@/components/ui/Button";
 import { UsetimeoutLoader } from "@/hooks/Usetimeoutloader";
 import { Avatarloading } from "@/components/ui/Skeletonloading";
+import { Cardlayout } from "@/components/ui/Cardlayout";
 
 export interface CampaignItem {
   id: string;
@@ -49,61 +50,54 @@ export default function MyCampaign({
   const [isLoading, setIsLoading] = useState(propIsLoading ?? true);
   UsetimeoutLoader(setIsLoading);
   return (
-    <div
-      className={`w-full max-w-full bg-white rounded-3xl p-4 sm:p-5 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col gap-4 ${className}`}
-    >
-      
-      <div className="flex items-center justify-between">
-        <h3 className="font-bold text-gray-900 text-base tracking-tight">
-          {title}
-        </h3>
+     <Cardlayout
+      title={title} 
+      icon={null}  
+      isLoading={isLoading}
+      skeleton={<Avatarloading />}
+
+      className={`rounded-3xl border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] select-none flex flex-col gap-4 ${className}`}
+
+      action={
         <button
           type="button"
           onClick={onViewAll}
-          className={`${buttonVariants({variant:'link'})} text-xs `}
+          className={`${buttonVariants({ variant: 'link' })} text-xs font-bold`}
         >
           View All
         </button>
-      </div>
-
-
+      }
+    >
       <div className="flex flex-col gap-3">
-        {isLoading ? (
-          <Avatarloading/>
-        ) : (
-          campaigns.map((item) => (
+        {campaigns.map((item) => (
           <div
             key={item.id}
-            className="flex items-center justify-between gap-3 p-1 rounded-2xl hover:bg-gray-50/80 transition-colors"
+            className="flex items-center justify-between gap-3 p-1 rounded-2xl hover:bg-gray-50/80 transition-colors select-none"
           >
-            <div className="flex items-center gap-3 min-w-0">
-           
-              <div className={`${buttonVariants({variant:'ghost'})}`}>
+            <div className="flex items-center gap-3 min-w-0 flex-1">
+
+              <div className={`${buttonVariants({ variant: "ghost" })} shrink-0`}>
                 {item.icon === "megaphone" ? (
                   <Megaphone className="w-5 h-5" />
                 ) : (
                   <Newspaper className="w-5 h-5" />
                 )}
               </div>
-
-       
               <div className="min-w-0 flex-1">
-                <h4 className="font-bold text-xs sm:text-sm text-gray-900 truncate">
+                <h4 className="font-bold text-xs sm:text-sm text-gray-900 truncate select-text">
                   {item.title}
                 </h4>
-                <p className="text-[11px] text-gray-400 font-medium truncate mt-0.5">
+                <p className="text-[11px] text-gray-400 font-medium truncate mt-0.5 select-text">
                   {item.reward}
                 </p>
               </div>
             </div>
-
-          
-            <span className={`text-[10px] font-bold   px-2.5 py-0.5 rounded-full shrink-0 ${buttonVariants({variant:'sucess'})} "`}>
+            <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full shrink-0 tracking-wide uppercase ${buttonVariants({ variant: "sucess" })}`}>
               {item.status}
             </span>
           </div>
-        )))}
+        ))}
       </div>
-    </div>
+    </Cardlayout>
   );
 }

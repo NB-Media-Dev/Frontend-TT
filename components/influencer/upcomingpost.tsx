@@ -7,6 +7,7 @@ import { UsetimeoutLoader } from "@/hooks/Usetimeoutloader";
 import { Avatarloading} from "@/components/ui/Skeletonloading";
 import Image, { StaticImageData } from "next/image";
 import avatar1 from "@/public/Images/avatar1.png";
+import { Cardlayout } from "../ui/Cardlayout";
 
 export interface UpcomingPostItem {
   id: string;
@@ -67,63 +68,68 @@ export default function UpcomingPost({ isLoading: propIsLoading }: UpcomingPostP
 
 
   return (
-    <div className="w-full bg-white rounded-[20px] sm:rounded-[28px] p-4 sm:p-5 md:p-6 border border-gray-100 shadow-[0_2px_16px_rgba(0,0,0,0.03)] select-none">
-     
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-base sm:text-xl  text-gray-900 tracking-tight">
-          Upcoming Posts
-        </h3>
-        <button className={`${buttonVariants({variant:'link'})} text-sm`}>
+     <Cardlayout
+      title="Upcoming Posts" 
+      icon={null}           
+      isLoading={isLoading}
+      skeleton={<Avatarloading />}
+
+      className="rounded-[20px] sm:rounded-[28px] p-4 sm:p-5 md:p-6 border border-gray-100 shadow-[0_2px_16px_rgba(0,0,0,0.03)] select-none"
+
+      action={
+        <button className={`${buttonVariants({ variant: 'link' })} text-sm`}>
           View All
         </button>
-      </div>
+      }
+    >
 
-      {isLoading ? <Avatarloading /> :  <div className="flex flex-col divide-y divide-gray-100">
+      <div className="flex flex-col divide-y divide-gray-100">
         {upcomingPostsData.map((post) => (
           <div
             key={post.id}
             className="flex items-center justify-between py-3 first:pt-0 last:pb-0 group hover:bg-gray-50/50 rounded-xl transition-colors -mx-1 px-1 gap-2"
           >
-            
+
             <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
+ 
               <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden shrink-0 bg-gray-100 border border-gray-100">
                 <Image
                   src={post.thumbnail}
                   alt={post.title}
                   fill
                   className="w-full h-full object-cover"
+                  sizes="(max-width: 640px) 40px, 44px"
                   onError={(e) => {
                     (e.target as HTMLElement).style.display = "none";
                   }}
                 />
               </div>
 
-        
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1.5 min-w-0">
-                  <span className="shrink-0">
+                  <span className="shrink-0 select-none">
                     {post.platform === "Instagram" ? <InstagramIcon /> : <YoutubeIcon />}
                   </span>
-                  <h4 className="text-xs sm:text-sm  text-gray-900 truncate group-hover:text-[#FF6B35] transition-colors">
+
+                  <h4 className="text-xs sm:text-sm text-gray-900 truncate group-hover:text-[#FF6B35] transition-colors font-medium">
                     {post.title}
                   </h4>
                 </div>
-                <p className="text-[10px] sm:text-[11px] font-medium text-gray-400 mt-0.5 truncate">
+
+                <p className="text-[10px] sm:text-[11px] font-medium text-gray-400 mt-0.5 truncate select-none">
                   {post.date} &nbsp;•&nbsp; {post.time}
                 </p>
               </div>
             </div>
 
-            
-            <div className="shrink-0">
-              <span className="inline-block px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs  bg-[#E0F2FE] text-[#0284C7]">
+            <div className="shrink-0 select-none">
+              <span className="inline-block px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs bg-[#E0F2FE] text-[#0284C7] font-semibold">
                 {post.status}
               </span>
             </div>
           </div>
         ))}
-      </div> }
-    
-    </div>
+      </div>
+    </Cardlayout>
   );
 }
